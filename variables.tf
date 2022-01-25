@@ -4,7 +4,7 @@ variable "project_id" {
 }
 variable "cluster_name" {
   description = "The name for the GKE cluster"
-  default     = "gke-QA"
+  default     = "gke-qa"
 }
 variable "env_name" {
   description = "The environment for the GKE cluster"
@@ -33,6 +33,7 @@ variable "ip_range_services_name" {
 
 variable "service-account-id" {
   description = "The ID of service account of GCP"
+  default = "serviceaccount-id"
 }
 variable "cpus" {
   description = "Number of cpus"
