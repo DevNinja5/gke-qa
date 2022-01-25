@@ -105,7 +105,31 @@ output "cluster_name" {
 </details>
 
 ---
+## Credentials
 
+1. **Grant permissions to service account _(Skip if already did)_**
+
+```bash
+gcloud projects add-iam-policy-binding core-phoenix-330516 --member="serviceAccount:NAME@core-phoenix-330516.iam.gserviceaccount.com" --role="roles/owner"
+```
+> Change NAME from name of service account
+
+<br>
+
+2. **Generate the key file for credentials**
+
+```bash
+gcloud iam service-accounts keys create knolgcp.json --iam-account=NAME@core-phoenix-330516.iam.gserviceaccount.com
+```
+> Change NAME from name of service account
+
+This will create the credential key `knolgcp.json` in current working directory
+
+3. **To use these credentials export the key**
+
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json"
+```
 ## Usage 
 
 1. Initiallize terraform to install provider plugins and configure backend

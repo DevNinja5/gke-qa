@@ -7,7 +7,8 @@
 .terraform/
 # Crash log files
 crash.log
-
+knolgcp.json
+gcpknol.json
 # Ignore any .tfvars files that are generated automatically for each Terraform run. Most
 # .tfvars files are managed as part of configuration and so should be included in
 # version control.

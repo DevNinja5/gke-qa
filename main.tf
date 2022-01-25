@@ -1,6 +1,6 @@
 provider "google" {
   version = "~> 3.42.0"
-  credentials = file("/home/knoldus/gcp-cred.json")
+  credentials = file("/home/knoldus/knolgcp.json")
 }
 
 module "gke_auth" {
@@ -10,6 +10,7 @@ module "gke_auth" {
   location     = module.gke.location
   cluster_name = module.gke.name
 }
+
 resource "google_service_account" "service_account" {
   account_id   = var.service-account-id
   display_name = "Service Account"
@@ -19,6 +20,7 @@ resource "local_file" "kubeconfig" {
   content  = module.gke_auth.kubeconfig_raw
   filename = "kubeconfig-${var.env_name}"
 }
+
 module "gcp-network" {
   source       = "terraform-google-modules/network/google"
   version      = "~> 2.5"
