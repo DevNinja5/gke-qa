@@ -33,7 +33,6 @@ variable "ip_range_services_name" {
 
 variable "service-account-id" {
   description = "The ID of service account of GCP"
-  default = "199829224634-compute@developer.gserviceaccount.com"
 }
 variable "cpus" {
   description = "Number of cpus"
