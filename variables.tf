@@ -14,6 +14,10 @@ variable "region" {
   description = "The region to host the cluster in"
   default     = "us-central1"
 }
+variable "zones" {
+  description = "Cluster zone"
+  default = "us-central1-c"
+}
 variable "network" {
   description = "The VPC network created to host the cluster in"
   default     = "gke-network"
@@ -42,7 +46,7 @@ variable "cpus" {
 
 variable "minnode" {
   description = "Minimum number of node pool"
-  default = 1
+  default = 2
 }
 variable "maxnode" {
   description = "Maximum number of node pool"

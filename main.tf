@@ -11,10 +11,10 @@ module "gke_auth" {
   cluster_name = module.gke.name
 }
 
-resource "google_service_account" "service_account" {
-  account_id   = var.service-account-id
-  display_name = "Service Account"
-}
+# resource "google_service_account" "service_account" {
+#   account_id   = var.service-account-id
+#   display_name = "Service Account"
+# }
 
 resource "local_file" "kubeconfig" {
   content  = module.gke_auth.kubeconfig_raw
@@ -51,8 +51,9 @@ module "gke" {
   source                 = "terraform-google-modules/kubernetes-engine/google//modules/private-cluster"
   project_id             = var.project_id
   name                   = "${var.cluster_name}-${var.env_name}"
-  regional               = true
+  regional               = false
   region                 = var.region
+  zones                  = ["us-central1-c"]
   network                = module.gcp-network.network_name
   subnetwork             = module.gcp-network.subnets_names[0]
   ip_range_pods          = var.ip_range_pods_name
@@ -61,7 +62,7 @@ module "gke" {
     {
       name                      = "node-pool"
       machine_type              = "n1-standard-2"
-      node_locations            = "asia-south1-a,asia-south1-b,asia-south1-c"
+      node_locations            = "us-central1-c"
       min_count                 = var.minnode
       max_count                 = var.maxnode
       disk_size_gb              = var.disksize
